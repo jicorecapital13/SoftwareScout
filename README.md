@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Blagor By [Inroweb](https://inroweb.com/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/74341967-70e6-4db5-a486-61e3dfc627be/deploy-status)](https://app.netlify.com/sites/blagor-inroweb/deploys)
@@ -53,3 +54,10 @@ yarn start (or) npm start
 ## ❤️ Thank you
 
 We would love to get your feedback and contributions, feel free to [Contect](https://www.inroweb.com/contact)
+=======
+<<<<<<< HEAD
+# SoftwareScout
+Your local changes here.
+=======
+The changes from the remote repository here.
+>>>>>>> origin/main
