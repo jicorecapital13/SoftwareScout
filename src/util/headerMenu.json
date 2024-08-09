@@ -9,8 +9,14 @@
       "url": "/blog"
     },
     {
+      "title": "About",
+      "url": "/About"
+    },
+    
+    {
       "title": "Contact",
       "url": "/contact"
     }
+    
   ]
 }

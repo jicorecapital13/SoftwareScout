@@ -22,10 +22,21 @@ const PostMaker = ({ data }) => (
         </div>
         <div style={{ display: "flex" }}>
           {data.length > 9 && (
-            <Link to="/blog" sx={{ variant: "variants.button" }}>
-              See all Blogs &nbsp;
-              <span>&#8599;</span>
-            </Link>
+            <Link 
+  to="/blog" 
+  sx={{ 
+    variant: "variants.button", 
+    backgroundColor: "#a31933",
+    color: "white", // Ensure the text is visible on the dark background
+    ':hover': {
+      backgroundColor: "white",
+      color: "#a31933",
+    }
+  }}
+>
+  See all Blogs &nbsp;
+  <span>&#8599;</span>
+</Link>
           )}
         </div>
       </div>

@@ -1,8 +1,8 @@
 {
   "primaryColor": "#a31933",
   "black": "#0e0e0e",
-  "background": "#fff",
-  "primaryBg": "#f8efef",
+  "background": "#f2f2f2",
+  "primaryBg": "#e0e0e0",
   "borderColor": "#e6e6e6",
   "mutedColor": "#787878"
 }

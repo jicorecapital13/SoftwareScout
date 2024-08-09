@@ -1,14 +1,14 @@
 {
   "meta": {
-    "iconimage": "../../../static/assets/logo-iron.png",
-    "siteUrl": "https://inroweb.com",
+    "iconimage": "../../../static/assets/softwarescoutslogo.png",
+    "siteUrl": "https://softwarescout.com",
     "showLogo": true,
-    "twitterUsername": "@inroweb",
+    "twitterUsername": "@",
     "darkModeVisibility": "NO",
-    "logoImage": "../../../static/assets/logo-iron.png",
+    "logoImage": "../../../static/assets/",
     "titleTemplate": "%s",
-    "title": "Blagor",
-    "image": "../../../static/assets/logo-iron.png",
+    "title": "",
+    "image": "../../../static/assets/softwarescoutslogo.png",
     "showTitle": true,
     "description": "..."
   }

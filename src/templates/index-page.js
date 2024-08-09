@@ -56,22 +56,30 @@ const HomePage = ({ data }) => {
     <div sx={indexStyles.homeData}>
       <div>
         {frontmatter.name && (
-          <h3 sx={indexStyles.title}>
-            <span sx={{ color: "primaryColor" }}>Hey,</span> {frontmatter.name}
-          </h3>
+              <h3 sx={{ color: 'text', fontSize: [4, 5, 6], fontWeight: 'bold', mb: [3, 4], textAlign: 'center' }}>
+              Master the Art of Integrating AI into Your Content Creation
+            </h3>
         )}
         {frontmatter.description && (
           <p sx={indexStyles.description}>{frontmatter.description}</p>
         )}
-        <Link
-          to={frontmatter.cta.url}
-          sx={{
-            variant: "variants.button",
-          }}
-        >
-          {frontmatter.cta.text} &nbsp;
-          <span>&#8599;</span>
-        </Link>
+<Link
+  to={frontmatter.cta.url}
+  sx={{
+    variant: "variants.button",
+    backgroundColor: "#a31933", // Set the button color
+    display: "inline-block", // Ensures it respects margin auto for centering
+    textAlign: "center",
+    mx: "auto", // Centers the button horizontally
+    color: "white", // Ensure text is readable against the new button color
+    padding: "10px 20px", // Adjust padding as needed
+    borderRadius: "5px", // Optional: Adjust border radius to match your design
+  }}
+>
+  {frontmatter.cta.text} &nbsp;
+  <span>&#8599;</span>
+</Link>
+
       </div>
       <GatsbyImage
         image={frontmatter.featuredImage.childImageSharp.gatsbyImageData}
