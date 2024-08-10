@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import AuthorBio from "../components/AuthorBio"; // Import AuthorBio component
 import slugify from "@sindresorhus/slugify";
 import SiteMeta from "../util/site.json";
 import {
@@ -75,7 +76,7 @@ const Pagination = (props) => (
 );
 
 const Post = ({ data, pageContext }) => {
-  const { markdownRemark } = data; // data.markdownRemark holds your post data
+  const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
 
   const pageURL =
@@ -99,7 +100,7 @@ const Post = ({ data, pageContext }) => {
           size={32}
           borderRadius="6"
           iconFillColor="#fff"
-          bgStyle={{ fill: "#" }}
+          bgStyle={{ fill: "#3b5998" }} // Updated to Facebook blue
         />
       </FacebookShareButton>
 
@@ -108,7 +109,7 @@ const Post = ({ data, pageContext }) => {
           size={32}
           borderRadius="6"
           iconFillColor="#fff"
-          bgStyle={{ fill: "#" }}
+          bgStyle={{ fill: "#1da1f2" }} // Updated to Twitter blue
         />
       </TwitterShareButton>
 
@@ -117,7 +118,7 @@ const Post = ({ data, pageContext }) => {
           size={32}
           borderRadius="6"
           iconFillColor="#fff"
-          bgStyle={{ fill: "#" }}
+          bgStyle={{ fill: "#0077b5" }} // Updated to LinkedIn blue
         />
       </LinkedinShareButton>
 
@@ -126,7 +127,7 @@ const Post = ({ data, pageContext }) => {
           size={32}
           borderRadius="6"
           iconFillColor="#fff"
-          bgStyle={{ fill: "#" }}
+          bgStyle={{ fill: "#0088cc" }} // Updated to Telegram blue
         />
       </TelegramShareButton>
 
@@ -135,7 +136,7 @@ const Post = ({ data, pageContext }) => {
           size={32}
           borderRadius="6"
           iconFillColor="#fff"
-          bgStyle={{ fill: "#" }}
+          bgStyle={{ fill: "#25D366" }} // Updated to WhatsApp green
         />
       </WhatsappShareButton>
 
@@ -144,7 +145,7 @@ const Post = ({ data, pageContext }) => {
           size={32}
           borderRadius="6"
           iconFillColor="#fff"
-          bgStyle={{ fill: "#" }}
+          bgStyle={{ fill: "#7f7f7f" }} // Updated to a neutral color for email
         />
       </EmailShareButton>
     </div>
@@ -155,7 +156,7 @@ const Post = ({ data, pageContext }) => {
     return tag === "none" ? (
       ""
     ) : (
-      <Link to={`/tag/` + slugify(`${tag}`)} sx={{ fontSize: 2 }}>
+      <Link key={tag} to={`/tag/` + slugify(`${tag}`)} sx={{ fontSize: 2 }}>
         − {tag}
       </Link>
     );
@@ -183,11 +184,7 @@ const Post = ({ data, pageContext }) => {
                   alignItems: "center",
                 }}
               >
-                {tagLabel === "none" || tagLabel === "" ? (
-                  ""
-                ) : (
-                  <div sx={blogStyles.tagsDiv}>{tagLabel}</div>
-                )}
+                {tagLabel.length > 0 && <div sx={blogStyles.tagsDiv}>{tagLabel}</div>}
                 <span>{frontmatter.date}</span>
               </div>
             </div>
@@ -212,6 +209,9 @@ const Post = ({ data, pageContext }) => {
             sx={{ variant: "variants.markdown" }}
             dangerouslySetInnerHTML={{ __html: html }}
           />
+
+          {/* ---------- Author Bio  ---------- */}
+          <AuthorBio />
 
           {/* ---------- Pagination  ---------- */}
           {(previous || next) && <Pagination {...props} />}
