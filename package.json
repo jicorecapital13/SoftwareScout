@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@theme-ui/color": "^0.6.0",
+    "@theme-ui/color-modes": "^0.16.2",
     "gatsby": "^4.7.1",
     "gatsby-plugin-google-analytics": "^4.11.0",
     "gatsby-plugin-google-fonts": "^1.0.1",

@@ -57,7 +57,7 @@ const HomePage = ({ data }) => {
       <div>
         {frontmatter.name && (
               <h3 sx={{ color: 'text', fontSize: [4, 5, 6], fontWeight: 'bold', mb: [3, 4], textAlign: 'center' }}>
-              Master the Art of Integrating AI into Your Content Creation
+              Your guide to the best software
             </h3>
         )}
         {frontmatter.description && (
