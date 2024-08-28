@@ -9,7 +9,7 @@ const Header = () => {
     <header sx={headerStyles.container}>
       <div sx={{ display: 'flex', alignItems: 'center' }}>
         <Logo />
-        <h1 sx={headerStyles.titleStyle}>Software<span sx={{ color: theme.colors.secondary || '#a31933' }}>Scout</span></h1>
+        <h2 sx={headerStyles.titleStyle}>Software<span sx={{ color: theme.colors.secondary || '#a31933' }}>Discoverer</span></h2>
       </div>
       <div sx={headerStyles.navIcons}>
         <div sx={headerStyles.navMenu}>

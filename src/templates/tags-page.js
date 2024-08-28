@@ -6,7 +6,7 @@ import Seo from "../components/seo";
 import BlogCard from "../components/blog-card";
 
 export const pageQuery = graphql`
-  query tagsQuery($id: String!, $tagTitle: String) {
+  query tagsQuery($tagTitle: String!) {
     allMarkdownRemark(filter: { frontmatter: { tags: { eq: $tagTitle } } }) {
       edges {
         node {
@@ -25,18 +25,12 @@ export const pageQuery = graphql`
         }
       }
     }
-    markdownRemark(id: { eq: $id }) {
-      id
-      frontmatter {
-        title
-      }
-    }
   }
 `;
 
-const Tags = ({ data }) => {
-  const { markdownRemark, allMarkdownRemark } = data; // data.markdownRemark holds your tags data
-  const { frontmatter } = markdownRemark;
+const Tags = ({ data, pageContext }) => {
+  const { allMarkdownRemark } = data;
+  const { tagTitle } = pageContext; // Access the tag title from pageContext
 
   const tagCard = allMarkdownRemark.edges
     .filter((edge) => !!edge.node.frontmatter.date)
@@ -44,11 +38,11 @@ const Tags = ({ data }) => {
 
   return (
     <Layout>
-      <Seo title={frontmatter.title} />
+      <Seo title={`Tag: ${tagTitle}`} />
       <div sx={tagsStyles.tagContainer}>
         <section sx={tagsStyles.tagHead}>
-          <h2>{frontmatter.title}</h2>
-          {tagCard.length > 1 || tagCard.length === 0 ? (
+          <h2>{`Tag: ${tagTitle}`}</h2>
+          {tagCard.length !== 1 ? (
             <p>{tagCard.length} Blogs</p>
           ) : (
             <p>{tagCard.length} Blog</p>

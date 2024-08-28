@@ -6,7 +6,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
   const blogList = path.resolve(`./src/templates/blog-list.js`);
-  const tagTemplate = path.resolve(`./src/templates/tags-page.js`); // Assuming you have a tag template
+  const tagTemplate = path.resolve(`./src/templates/tags-page.js`);
 
   const result = await graphql(`
     {
@@ -115,13 +115,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   tags.forEach(tag => {
     createPage({
       path: `/tag/${slugify(tag.fieldValue)}`,
-      component: path.resolve(`./src/templates/tags-page.js`),
+      component: tagTemplate,
       context: {
         tagTitle: tag.fieldValue,
       },
     });
   });
-  
 };
 
 exports.onCreateNode = ({ node, getNode, actions }) => {

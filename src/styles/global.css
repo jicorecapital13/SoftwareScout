@@ -17,3 +17,8 @@ p {
   margin: 0;
   padding: 0;
 }
+
+aside {
+  display: block; /* Ensure the sidebar is not hidden */
+}
+
