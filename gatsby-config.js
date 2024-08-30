@@ -84,6 +84,18 @@ module.exports = {
               escapeEntities: {},
             },
           },
+          // Add the TOC plugin here
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "Table of Contents", // Exclude headings named 'Table of Contents'
+              tight: false,
+              ordered: false,
+              fromHeading: 1,
+              toHeading: 6,
+              className: "toc",
+            },
+          },
         ],
       },
     },

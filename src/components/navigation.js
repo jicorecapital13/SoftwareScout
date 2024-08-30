@@ -39,6 +39,9 @@ class Navigation extends React.Component {
           className={
             this.state.showMenu ? "menu-trigger is-active" : "menu-trigger"
           }
+          aria-expanded={this.state.showMenu} // Indicates the menu's current state
+          aria-controls="site-menu" // Links the button to the controlled element
+          aria-label={this.state.showMenu ? "Close menu" : "Open menu"} // Provides an accessible label
         >
           <div className="icon-menu-line">
             <RiMenu3Line />
@@ -47,7 +50,9 @@ class Navigation extends React.Component {
             <RiCloseLine />
           </div>
         </button>
-        <ul className="site-menu">{listMenuItems}</ul>
+        <ul className="site-menu" id="site-menu">
+          {listMenuItems}
+        </ul>
       </nav>
     );
   }

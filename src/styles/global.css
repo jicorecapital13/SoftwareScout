@@ -21,4 +21,31 @@ p {
 aside {
   display: block; /* Ensure the sidebar is not hidden */
 }
+/* Table of Contents Styling */
+.toc {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.toc ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc ul ul {
+  padding-left: 20px;
+}
+
+.toc a {
+  text-decoration: none;
+  color: #333;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
 
