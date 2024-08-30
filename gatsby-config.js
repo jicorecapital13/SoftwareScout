@@ -3,18 +3,21 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
-const netlifyCmsPaths = {
-  resolve: `gatsby-plugin-netlify-cms-paths`,
-  options: {
-    cmsConfig: `/static/admin/config.yml`,
-  },
-};
 
+// Import necessary files
 const integration = require("./src/util/integrations.json");
 const settings = require("./src/util/site.json");
 const themecolors = require("./src/util/default-colors.json");
-const iconImg = settings.meta.iconimage.slice(15);
+
+// Define variables for easier use
+const iconImg = settings.meta.iconimage; // Ensure this is the relative path from the root
 const siteFont = integration.siteFont;
+
+// Function to resolve the correct icon path
+const getIconPath = (icon) => {
+  // Ensure the icon path is relative to the project root
+  return icon.startsWith('static/') ? icon : `static/${icon}`;
+};
 
 module.exports = {
   flags: { PRESERVE_WEBPACK_CACHE: true },
@@ -39,7 +42,7 @@ module.exports = {
       options: {
         fonts: [
           `${siteFont.body}`,
-          `${siteFont.heading}\:300,400,700`, // you can also specify font weights and styles
+          `${siteFont.heading}:300,400,700`,
           `${siteFont.monospace}`,
         ],
         display: "swap",
@@ -53,7 +56,12 @@ module.exports = {
       options: {
         gfm: true,
         plugins: [
-          netlifyCmsPaths,
+          {
+            resolve: `gatsby-plugin-netlify-cms-paths`,
+            options: {
+              cmsConfig: `/static/admin/config.yml`,
+            },
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -73,16 +81,13 @@ module.exports = {
               aliases: {},
               showLineNumbers: false,
               noInlineHighlight: false,
-              // By default the HTML entities <>&'" are escaped.
-              // Add additional HTML escapes by providing a mapping
-              // of HTML entities and their escape value IE: { '}': '&#123;' }
               escapeEntities: {},
             },
           },
         ],
       },
     },
-    "gatsby-plugin-theme-ui",
+    `gatsby-plugin-theme-ui`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
     {
@@ -101,9 +106,9 @@ module.exports = {
         background_color: themecolors.background,
         theme_color: themecolors.background,
         display: `standalone`,
-        icon: "static" + iconImg,
+        icon: getIconPath(`assets/softwarescoutslogo.png`), // Ensure the correct icon path is used
       },
     },
-    "gatsby-plugin-offline",
+    `gatsby-plugin-offline`,
   ],
 };

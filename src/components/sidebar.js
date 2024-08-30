@@ -36,13 +36,17 @@ export default Sidebar;
 
 const sidebarStyles = {
   container: {
-    bg: "background",
+    bg: "background", // Uses the background color from your theme
     border: "1px solid",
     borderColor: "muted",
     borderRadius: "8px",
     p: 3,
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
     mt: 4,
+    transition: "all 0.3s ease", // Smooth transition for hover effects
+    '&:hover': {
+      boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)", // Enhanced shadow on hover
+    },
   },
   heading: {
     mb: 3,
@@ -61,7 +65,7 @@ const sidebarStyles = {
   listItem: {
     mb: 2,
     '&:last-child': {
-      mb: 0,
+      mb: 0, // Removes margin from the last item
     },
   },
   link: {
