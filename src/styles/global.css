@@ -49,3 +49,104 @@ aside {
   text-decoration: underline;
 }
 
+/* Futuristic Sidebar */
+aside {
+  display: block;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Futuristic Table of Contents Styling */
+.toc {
+  background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.toc ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc ul ul {
+  padding-left: 20px;
+}
+
+.toc a {
+  text-decoration: none;
+  color: #030303;
+  font-size: 1rem;
+  display: inline-block;
+  position: relative;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+  color: #A31933; /* Futuristic hover effect */
+}
+/* Container for the table */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+/* General table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+/* Table header styling */
+th {
+  background-color: #333;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+/* Table cell styling */
+td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Highlight on hover */
+tr:hover {
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+/* Center-align the cost column */
+td:last-child {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Responsive for mobile devices */
+@media (max-width: 600px) {
+  table {
+    font-size: 14px;
+  }
+  th, td {
+    padding: 8px;
+  }
+}

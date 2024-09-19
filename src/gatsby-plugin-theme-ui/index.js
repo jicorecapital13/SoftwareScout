@@ -2,7 +2,7 @@ import defaultColors from "../util/default-colors.json";
 import fontFamily from "../util/integrations.json";
 
 const theme = {
-  breakpoints: ["40em", "56em", "64em", "90em", "120em"],
+  breakpoints: ["40em", "56em", "64em", "90em", "120em"], // Responsive breakpoints for mobile, tablet, and desktop
   space: [0, 4, 8, 16, 24, 32, 48, 64, 128, 256, 512],
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
   fonts: {
@@ -17,8 +17,8 @@ const theme = {
     container: {
       maxWidth: "1440px",
       m: "0 auto",
-      px: ["20px", "60px", "80px", "160px", "160px"],
-      py: [4, 4, 7],
+      px: ["16px", "32px", "48px", "80px", "100px"], // More responsive padding values for different breakpoints
+      py: [3, 4, 6],
     },
     button: {
       py: 2,
@@ -31,7 +31,7 @@ const theme = {
       color: "black",
       background: "none",
       letterSpacing: "1px",
-      "&: hover": {
+      "&:hover": {
         color: "primaryColor",
       },
     },
@@ -48,7 +48,11 @@ const theme = {
       },
       img: {
         display: "block",
+        width: ["100%", "100%", "80%", "80%", "70%"], // Responsive image width to make it larger on smaller screens
+        maxWidth: "100%",
+        height: "auto",
         borderRadius: "18px",
+        margin: "0 auto", // Center-align images
       },
       ".gatsby-resp-image-figure": {
         my: 4,
@@ -74,7 +78,7 @@ const theme = {
         figcaption: {
           mt: 1,
           fontSize: 0,
-          textAlign: "ceter",
+          textAlign: "center",
           color: "mutedColor",
         },
       },
@@ -102,13 +106,13 @@ const theme = {
         display: "flex",
         justifyContent: "center",
         gap: "30px",
-        "li ": {
+        li: {
           listStyle: "none",
           margin: "0 5px",
           a: {
             display: "inline-block",
             fontWeight: "bold",
-            fontSize: 4,
+            fontSize: [3, 4], // Responsive font size for pagination links
             color: "primaryColor",
             "&:hover": {
               color: "black",
@@ -127,11 +131,11 @@ const theme = {
         p: 0,
         display: ["flex"],
         justifyContent: "space-between",
-        gap: "60px",
+        gap: "30px", // Reduced gap for better responsiveness
         flexWrap: "wrap",
         alignItems: "center",
-        "li ": {
-          width: ["100%", "100%", "100%", "45%"],
+        li: {
+          width: ["100%", "100%", "45%", "45%"], // Responsive width for pagination items
           listStyle: "none",
           padding: 4,
           borderRadius: "12px",
@@ -154,6 +158,14 @@ const theme = {
           },
         },
       },
+    },
+  },
+  // Adding flexbox styles for any sections
+  flexbox: {
+    flexColumn: {
+      flex: "1",
+      paddingRight: "2rem",
+      paddingBottom: [2, 3, 4], // Responsive padding for smaller screens
     },
   },
 };

@@ -25,9 +25,9 @@ const AboutPage = () => (
           />
         </div>
         <div sx={styles.aboutText}>
-          <h1 sx={styles.title}>Hey there, I'm John, and welcome to Software Scout!</h1>
+          <h1 sx={styles.title}>Hey there, I'm John, and welcome to Software Discoverer!</h1>
           <p sx={styles.description}>
-            At Software Scout, we provide comprehensive tutorials and resources for content creators, software enthusiasts, and AI innovators. Our mission is to help you stay ahead in the rapidly evolving world of technology.
+            At Software Discoverer, we provide comprehensive tutorials and resources for content creators, software enthusiasts, and AI innovators. Our mission is to help you stay ahead in the rapidly evolving world of technology.
           </p>
           <p sx={styles.description}>
             We offer insightful guides on software, effective content creation strategies, and the latest advancements in generative AI. Whether you are a blogger, YouTuber, or developer, our content is designed to enhance your skills and boost productivity while maintaining high standards of creativity and quality.
@@ -36,7 +36,7 @@ const AboutPage = () => (
             <a className="cta-button" href="/" sx={styles.ctaButton}>
               Join Our Newsletter
             </a>
-            <a className="cta-button" href="https://www.youtube.com/channel/UCih--rP71XkHa340FmnxzbQ" target="_blank" rel="noopener noreferrer" sx={styles.ctaButton}>
+            <a className="cta-button" href="https://www.youtube.com/channel/UCpGT2YhoxmJaKWPOsA5Ia_A" target="_blank" rel="noopener noreferrer" sx={styles.ctaButton}>
               Visit Our YouTube Channel
             </a>
           </div>

@@ -6,6 +6,8 @@ import BlogListHome from "../components/blog-list-home";
 import Seo from "../components/seo";
 import Site from "../util/site.json";
 import { GatsbyImage } from "gatsby-plugin-image";
+import AboutAndRecentArticles from "../components/AboutAndRecentArticles";
+
 export const pageQuery = graphql`
   query HomeQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -56,30 +58,38 @@ const HomePage = ({ data }) => {
     <div sx={indexStyles.homeData}>
       <div>
         {frontmatter.name && (
-              <h3 sx={{ color: 'text', fontSize: [4, 5, 6], fontWeight: 'bold', mb: [3, 4], textAlign: 'center' }}>
-              Your guide to the best software
-            </h3>
+          <h3
+            sx={{
+              color: "text",
+              fontSize: [4, 5, 6],
+              fontWeight: "bold",
+              mb: [3, 4],
+              textAlign: "center",
+            }}
+          >
+            Your guide to the best software
+          </h3>
         )}
         {frontmatter.description && (
           <p sx={indexStyles.description}>{frontmatter.description}</p>
         )}
-<Link
-  to={frontmatter.cta.url}
-  sx={{
-    variant: "variants.button",
-    backgroundColor: "#a31933", // Set the button color
-    display: "inline-block", // Ensures it respects margin auto for centering
-    textAlign: "center",
-    mx: "auto", // Centers the button horizontally
-    color: "white", // Ensure text is readable against the new button color
-    padding: "10px 20px", // Adjust padding as needed
-    borderRadius: "5px", // Optional: Adjust border radius to match your design
-  }}
->
-  {frontmatter.cta.text} &nbsp;
-  <span>&#8599;</span>
-</Link>
-
+        <Link
+          to={frontmatter.cta.url}
+          sx={{
+            variant: "variants.button",
+            backgroundColor: "#a31933", // Set the button color
+            display: "inline-block", // Ensures it respects margin auto for centering
+            textAlign: "center",
+            mx: "auto", // Centers the button horizontally
+            color: "white", // Ensure text is readable against the new button color
+            padding: "10px 20px", // Adjust padding as needed
+            borderRadius: "5px", // Optional: Adjust border radius to match your design
+            mt: 4, // Add some margin to separate from the description
+          }}
+        >
+          {frontmatter.cta.text} &nbsp;
+          <span>&#8599;</span>
+        </Link>
       </div>
       <GatsbyImage
         image={frontmatter.featuredImage.childImageSharp.gatsbyImageData}
@@ -88,6 +98,7 @@ const HomePage = ({ data }) => {
       />
     </div>
   );
+
   return (
     <Layout>
       <Seo title={Site.title} description={frontmatter.description} />
@@ -101,6 +112,11 @@ const HomePage = ({ data }) => {
         {homeData}
       </div>
       <BlogListHome data={posts} />
+
+      {/* Place the new component near the footer */}
+      <AboutAndRecentArticles />
+
+      {/* Footer component */}
     </Layout>
   );
 };

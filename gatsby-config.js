@@ -20,7 +20,7 @@ const getIconPath = (icon) => {
 };
 
 module.exports = {
-  flags: { PRESERVE_WEBPACK_CACHE: true },
+  // Removed the deprecated flag
   siteMetadata: settings.meta,
   plugins: [
     {
@@ -84,7 +84,6 @@ module.exports = {
               escapeEntities: {},
             },
           },
-          // Add the TOC plugin here
           {
             resolve: `gatsby-remark-table-of-contents`,
             options: {
@@ -118,7 +117,7 @@ module.exports = {
         background_color: themecolors.background,
         theme_color: themecolors.background,
         display: `standalone`,
-        icon: getIconPath(`assets/softwarescoutslogo.png`), // Ensure the correct icon path is used
+        icon: getIconPath(`assets/softwarediscoverer.png`), // Ensure the correct icon path is used
       },
     },
     `gatsby-plugin-offline`,

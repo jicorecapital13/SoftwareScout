@@ -1,14 +1,14 @@
 {
   "meta": {
-    "iconimage": "../../../static/assets/softwarescoutslogo.png",
-    "siteUrl": "https://softwarescout.com",
+    "iconimage": "../../../static/assets/softwarediscoverer.png",
+    "siteUrl": "https://softwarediscoverer.com",
     "showLogo": true,
     "twitterUsername": "@",
     "darkModeVisibility": "NO",
-    "logoImage": "../../../static/assets/",
+    "logoImage": "../../../static/assets/softwarediscoverer.png",
     "titleTemplate": "%s",
     "title": "",
-    "image": "../../../static/assets/softwarescoutslogo.png",
+    "image": "../../../static/assets/softwarediscoverer.png",
     "showTitle": true,
     "description": "..."
   }

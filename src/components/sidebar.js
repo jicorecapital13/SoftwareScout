@@ -36,51 +36,52 @@ export default Sidebar;
 
 const sidebarStyles = {
   container: {
-    bg: "background", // Uses the background color from your theme
-    border: "1px solid",
-    borderColor: "muted",
-    borderRadius: "8px",
-    p: 3,
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
-    mt: 4,
-    transition: "all 0.3s ease", // Smooth transition for hover effects
-    '&:hover': {
-      boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)", // Enhanced shadow on hover
-    },
+    padding: '15px 0', // Remove background and border, add vertical padding
+    marginBottom: '20px',
   },
   heading: {
-    mb: 3,
-    fontSize: 4,
-    fontWeight: "heading",
-    color: "primary",
-    borderBottom: "2px solid",
-    borderColor: "primary",
-    pb: 2,
+    fontSize: '1.5rem', // Larger font size for better visibility
+    fontWeight: 'bold',
+    color: '#030303',
+    marginBottom: '15px',
+    position: 'relative', // Position for the pseudo-element
+    paddingBottom: '10px',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      width: '100%', // Extend the line fully under the title
+      height: '2px',
+      backgroundColor: '#A31933', // Custom color for the line
+    },
   },
   list: {
-    listStyleType: "none",
-    m: 0,
-    p: 0,
+    listStyleType: 'none',
+    paddingLeft: 0,
+    margin: 0,
   },
   listItem: {
-    mb: 2,
+    marginBottom: '10px',
     '&:last-child': {
-      mb: 0, // Removes margin from the last item
+      marginBottom: 0,
     },
   },
   link: {
-    color: "text",
-    fontSize: 2,
-    fontWeight: "body",
-    textDecoration: "none",
-    transition: "color 0.2s ease",
+    textDecoration: 'none',
+    color: '#030303',
+    fontSize: '1rem',
+    display: 'inline-block',
+    position: 'relative',
+    transition: 'color 0.2s ease',
     '&:hover': {
-      color: "primary",
+      textDecoration: 'underline',
+      color: '#A31933', // Futuristic hover effect
     },
   },
   count: {
-    ml: 2,
-    color: "muted",
-    fontSize: 1,
+    marginLeft: '5px',
+    color: '#666',
+    fontSize: '0.9rem',
   },
 };

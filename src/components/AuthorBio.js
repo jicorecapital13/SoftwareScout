@@ -16,7 +16,7 @@ const AuthorBio = () => (
           imgStyle={{ borderRadius: '50%' }}
         />
       </div>
-      <b className="entry-author-name author-name fn">John - Software Scout</b>
+      <b className="entry-author-name author-name fn">John - Software Discoverer</b>
       <div className="entry-author-description author-bio">
         <p>
           I'm John, a tech enthusiast and software developer. I make content creation easier with insightful tutorials, reviews, and the latest updates in AI and software tools.
