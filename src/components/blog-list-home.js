@@ -5,10 +5,21 @@ import BlogCard from "./blog-card";
 import postData from "../util/posts.json";
 
 export default function BlogListHome(props) {
-  const data = props.data;
+  // Ensure `data` is available and has the expected structure
+  const data = props.data || { edges: [] };
+
+  // Map through the blog posts and pass necessary data to `BlogCard`
   const posts = data.edges
-    .filter((edge) => !!edge.node.frontmatter.date)
-    .map((edge) => <BlogCard key={edge.node.id} data={edge.node} />);
+    .filter((edge) => !!edge.node.frontmatter?.date) // Ensure date exists
+    .map((edge) => (
+      <BlogCard
+        key={edge.node.id}
+        data={edge.node}
+        // Pass the description here as part of the data being rendered
+        description={edge.node.frontmatter?.description || "No description available."}
+      />
+    ));
+
   return <PostMaker data={posts} />;
 }
 
@@ -17,26 +28,26 @@ const PostMaker = ({ data }) => (
     <div>
       <div sx={blogStyles.blogListHomeHead}>
         <div>
-          <h2 sx={blogStyles.title}>{postData.title}</h2>
-          <p sx={blogStyles.description}>{postData.description}</p>
+          <h2 sx={blogStyles.title}>{postData?.title || "Blog"}</h2>
+          <p sx={blogStyles.description}>{postData?.description || "Latest blog posts."}</p>
         </div>
         <div style={{ display: "flex" }}>
           {data.length > 9 && (
-            <Link 
-  to="/blog" 
-  sx={{ 
-    variant: "variants.button", 
-    backgroundColor: "#a31933",
-    color: "white", // Ensure the text is visible on the dark background
-    ':hover': {
-      backgroundColor: "white",
-      color: "#a31933",
-    }
-  }}
->
-  See all Blogs &nbsp;
-  <span>&#8599;</span>
-</Link>
+            <Link
+              to="/blog"
+              sx={{
+                variant: "variants.button",
+                backgroundColor: "#a31933",
+                color: "white",
+                ":hover": {
+                  backgroundColor: "white",
+                  color: "#a31933",
+                },
+              }}
+            >
+              See all Blogs &nbsp;
+              <span>&#8599;</span>
+            </Link>
           )}
         </div>
       </div>

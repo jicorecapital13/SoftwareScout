@@ -1,28 +1,20 @@
 /**
  * Configure your Gatsby site with this file.
  *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
+ * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
 
-// Import necessary files
 const integration = require("./src/util/integrations.json");
 const settings = require("./src/util/site.json");
 const themecolors = require("./src/util/default-colors.json");
 
-// Define variables for easier use
-const iconImg = settings.meta.iconimage; // Ensure this is the relative path from the root
+const iconImg = "assets/softwarediscoverer.png";  // Corrected path relative to static folder
 const siteFont = integration.siteFont;
 
-// Function to resolve the correct icon path
-const getIconPath = (icon) => {
-  // Ensure the icon path is relative to the project root
-  return icon.startsWith('static/') ? icon : `static/${icon}`;
-};
-
 module.exports = {
-  // Removed the deprecated flag
   siteMetadata: settings.meta,
   plugins: [
+    // Source static assets and content
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -37,6 +29,8 @@ module.exports = {
         name: `content`,
       },
     },
+
+    // Google fonts setup
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -48,9 +42,13 @@ module.exports = {
         display: "swap",
       },
     },
+
+    // Image processing plugins
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+
+    // Markdown transformer with plugins for enhanced markdown support
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -68,8 +66,8 @@ module.exports = {
               maxWidth: 1024,
               showCaptions: true,
               linkImagesToOriginal: false,
-              tracedSVG: true,
-              loading: "lazy",
+              loading: "lazy", // Use lazy-loading for performance
+              placeholder: "none", // Removed blurred placeholder as requested
             },
           },
           `gatsby-remark-responsive-iframe`,
@@ -77,17 +75,14 @@ module.exports = {
             resolve: `gatsby-remark-prismjs`,
             options: {
               classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
               showLineNumbers: false,
               noInlineHighlight: false,
-              escapeEntities: {},
             },
           },
           {
             resolve: `gatsby-remark-table-of-contents`,
             options: {
-              exclude: "Table of Contents", // Exclude headings named 'Table of Contents'
+              exclude: "Table of Contents",
               tight: false,
               ordered: false,
               fromHeading: 1,
@@ -98,16 +93,26 @@ module.exports = {
         ],
       },
     },
+
+    // Theme UI for styling
     `gatsby-plugin-theme-ui`,
+
+    // SEO and site enhancements
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
+
+    // Google Analytics setup
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: integration.ga,
       },
     },
+
+    // Sitemap generation
     `gatsby-plugin-sitemap`,
+
+    // Web manifest setup
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -117,9 +122,11 @@ module.exports = {
         background_color: themecolors.background,
         theme_color: themecolors.background,
         display: `standalone`,
-        icon: getIconPath(`assets/softwarediscoverer.png`), // Ensure the correct icon path is used
+        icon: `static/${iconImg}`,  // Use a direct relative path to the static folder
       },
     },
+
+    // Enable offline support
     `gatsby-plugin-offline`,
   ],
 };

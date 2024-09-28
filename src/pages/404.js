@@ -14,7 +14,7 @@ const NotFound = () => (
           Oops page n<SiZeromq sx={{ color: "primaryColor" }} />t found
         </h1>
         <p>
-          Have you wondered into the unknow. Let us help you, Please take a look
+          Have you wondered into the unknown. Let us help you, Please take a look
           at below options
         </p>
       </header>

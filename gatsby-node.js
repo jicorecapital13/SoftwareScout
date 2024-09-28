@@ -1,12 +1,13 @@
 const path = require("path");
-const { createFilePath } = require(`gatsby-source-filesystem`);
+const { createFilePath } = require("gatsby-source-filesystem");
 const slugify = require("@sindresorhus/slugify");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
-  const blogList = path.resolve(`./src/templates/blog-list.js`);
-  const tagTemplate = path.resolve(`./src/templates/tags-page.js`); // Assuming you have a tag template
+  const blogListTemplate = path.resolve(`./src/templates/blog-list.js`);
+  const blogPostTemplate = path.resolve(`./src/templates/blog-post.js`);
+  const tagTemplate = path.resolve(`./src/templates/tags-page.js`);
 
   const result = await graphql(`
     {
@@ -34,19 +35,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  // Helper function to create pages based on template type
-  const createPagesByTemplate = (templateName, prefix = '') => {
-    const pages = result.data.allMarkdownRemark.edges.filter(
+  const posts = result.data.allMarkdownRemark.edges;
+  const tags = result.data.allMarkdownRemark.group;
+
+  // Helper function to create pages for specific templates
+  const createPagesByTemplate = (templateName, prefix = "") => {
+    const pages = posts.filter(
       (edge) => edge.node.frontmatter.template === templateName
     );
 
     pages.forEach((page, index) => {
       const id = page.node.id;
       const title = page.node.frontmatter.title;
-      const previous = index === pages.length - 1 ? null : pages[index + 1].node;
-      const next = index === 0 ? null : pages[index - 1].node;
+      const previous = index === pages.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
 
-      // Check if slug is provided in frontmatter, otherwise use a slugified title
       const pathSlug = page.node.frontmatter.slug
         ? page.node.frontmatter.slug
         : `${prefix}${slugify(title)}`;
@@ -63,34 +66,32 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   };
 
-  // Create pages for specific templates
+  // Create pages for static templates
   createPagesByTemplate("index-page");
   createPagesByTemplate("contact-page");
   createPagesByTemplate("about-page", "/about");
 
-  // Create blog posts
-  const posts = result.data.allMarkdownRemark.edges.filter(
-    (edge) => edge.node.frontmatter.template === "blog-post"
-  );
+  // Create blog posts with previous and next navigation
+  posts
+    .filter((post) => post.node.frontmatter.template === "blog-post")
+    .forEach((post, index) => {
+      const id = post.node.id;
+      const postTitle = post.node.frontmatter.title;
+      const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
+      const prefix = `/blog/`;
+      const slug = post.node.frontmatter.slug || slugify(postTitle);
 
-  posts.forEach((post, index) => {
-    const id = post.node.id;
-    const postTitle = post.node.frontmatter.title;
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-    const next = index === 0 ? null : posts[index - 1].node;
-    const prefix = `/blog/`;
-    const slug = post.node.frontmatter.slug || slugify(postTitle);
-
-    createPage({
-      path: prefix + slug,
-      component: path.resolve(`src/templates/blog-post.js`),
-      context: {
-        id,
-        previous,
-        next,
-      },
+      createPage({
+        path: prefix + slug,
+        component: blogPostTemplate,
+        context: {
+          id,
+          previous,
+          next,
+        },
+      });
     });
-  });
 
   // Create paginated blog list pages
   const postsPerPage = 9;
@@ -99,7 +100,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
       path: i === 0 ? `/blog` : `/blog/${i + 1}`,
-      component: blogList,
+      component: blogListTemplate,
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
@@ -110,18 +111,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   });
 
   // Create tag pages dynamically
-  const tags = result.data.allMarkdownRemark.group;
-
-  tags.forEach(tag => {
+  tags.forEach((tag) => {
     createPage({
       path: `/tag/${slugify(tag.fieldValue)}`,
-      component: path.resolve(`./src/templates/tags-page.js`),
+      component: tagTemplate,
       context: {
         tagTitle: tag.fieldValue,
       },
     });
   });
-  
 };
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -131,7 +129,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
     createNodeField({
       node,
-      name: `slug`,
+      name: "slug",
       value: slug,
     });
   }

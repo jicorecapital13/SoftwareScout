@@ -2,7 +2,7 @@ import defaultColors from "../util/default-colors.json";
 import fontFamily from "../util/integrations.json";
 
 const theme = {
-  breakpoints: ["40em", "56em", "64em", "90em", "120em"], // Responsive breakpoints for mobile, tablet, and desktop
+  breakpoints: ["40em", "56em", "64em", "90em", "120em"],
   space: [0, 4, 8, 16, 24, 32, 48, 64, 128, 256, 512],
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
   fonts: {
@@ -13,70 +13,109 @@ const theme = {
   colors: {
     ...defaultColors,
   },
+  shadows: {
+    card: "0px 4px 12px rgba(0, 0, 0, 0.05)",
+    hoverCard: "0px 6px 18px rgba(0, 0, 0, 0.1)",
+  },
   variants: {
     container: {
-      maxWidth: "1440px",
-      m: "0 auto",
-      px: ["16px", "32px", "48px", "80px", "100px"], // More responsive padding values for different breakpoints
-      py: [3, 4, 6],
+      maxWidth: "1200px",
+      margin: "0 auto",
+      paddingX: ["16px", "32px", "48px", "80px", "100px"],
+      paddingY: [3, 4, 6],
+      backgroundColor: "primaryBg",
+      borderRadius: "8px",
+      boxShadow: "card",
+    },
+    sidebar: {
+      maxWidth: ["100%", "100%", "230px"], // Make sidebar smaller
+      backgroundColor: "primaryBg",
+      boxShadow: "card",
+      padding: 3,
+      borderRadius: "8px",
+      margin: ["0 auto", null, "0"],
+    },
+    blogCard: {
+      flexBasis: ["100%", "100%", "60%"], // Increase blog card size for larger screens
+      backgroundColor: "primaryBg",
+      boxShadow: "card",
+      padding: 4,
+      borderRadius: "8px",
+      marginBottom: 4,
+      "&:hover": {
+        boxShadow: "hoverCard",
+      },
     },
     button: {
-      py: 2,
-      px: 3,
+      paddingY: 2,
+      paddingX: 4,
       fontSize: 2,
       cursor: "pointer",
-      borderRadius: "12px",
+      borderRadius: "8px",
       border: "1.2px solid",
       borderColor: "black",
       color: "black",
-      background: "none",
-      letterSpacing: "1px",
+      backgroundColor: "white",
+      transition: "background-color 0.3s ease, box-shadow 0.3s ease",
       "&:hover": {
+        backgroundColor: "primaryColor",
+        color: "white",
+        boxShadow: "hoverCard",
+      },
+    },
+    footer: {
+      backgroundColor: "primaryBg",
+      paddingY: 3,
+      textAlign: "center",
+      borderTop: "1px solid",
+      borderColor: "borderColor",
+      fontSize: 1,
+      color: "mutedColor",
+      a: {
         color: "primaryColor",
+        textDecoration: "none",
+        fontSize: 1,
+        "&:hover": {
+          color: "secondary",
+        },
       },
     },
     markdown: {
-      py: 5,
+      paddingY: 5,
       "h1, h2, h3, h4, h5, h6": {
         color: "black",
       },
       pre: {
-        borderRadius: "12px",
-        p: 3,
-        bg: "#333",
+        borderRadius: "8px",
+        padding: 3,
+        backgroundColor: "#333",
         color: "#fff",
       },
       img: {
         display: "block",
-        width: ["100%", "100%", "80%", "80%", "70%"], // Responsive image width to make it larger on smaller screens
+        width: ["100%", "100%", "80%", "80%", "70%"],
         maxWidth: "100%",
         height: "auto",
-        borderRadius: "18px",
-        margin: "0 auto", // Center-align images
-      },
-      ".gatsby-resp-image-figure": {
-        my: 4,
-        mx: 0,
-        ".gatsby-resp-image-wrapper": {
-          maxWidth: "none !important",
-        },
+        borderRadius: "16px",
+        margin: "0 auto",
       },
       blockquote: {
         borderLeft: "3px solid",
-        borderColor: "borderColor",
-        px: 4,
+        borderColor: "primaryColor",
+        paddingX: 4,
         p: {
           fontWeight: "300",
         },
       },
       "blockquote, pre": {
-        my: 5,
+        marginY: 5,
+        boxShadow: "card",
       },
       figure: {
-        mx: 0,
-        my: 3,
+        marginX: 0,
+        marginY: 3,
         figcaption: {
-          mt: 1,
+          marginTop: 1,
           fontSize: 0,
           textAlign: "center",
           color: "mutedColor",
@@ -85,35 +124,37 @@ const theme = {
       "p, li": {
         fontSize: 3,
         color: "black",
-        py: 2,
+        paddingY: 2,
       },
       a: {
         color: "primaryColor",
         fontWeight: "600",
         letterSpacing: "0.5px",
+        transition: "color 0.2s ease",
         "&:hover": {
           color: "black",
         },
       },
     },
     pageListPagination: {
-      mt: 4,
-      mb: 7,
+      marginTop: 4,
+      marginBottom: 7,
       textAlign: "center",
       ul: {
-        m: 0,
-        p: 0,
+        margin: 0,
+        padding: 0,
         display: "flex",
         justifyContent: "center",
-        gap: "30px",
+        gap: "20px",
         li: {
           listStyle: "none",
           margin: "0 5px",
           a: {
             display: "inline-block",
             fontWeight: "bold",
-            fontSize: [3, 4], // Responsive font size for pagination links
+            fontSize: [3, 4],
             color: "primaryColor",
+            transition: "color 0.2s ease",
             "&:hover": {
               color: "black",
             },
@@ -125,21 +166,22 @@ const theme = {
       },
     },
     pagination: {
-      mt: 7,
+      marginTop: 5,
       ul: {
-        m: 0,
-        p: 0,
-        display: ["flex"],
+        margin: 0,
+        padding: 0,
+        display: "flex",
         justifyContent: "space-between",
-        gap: "30px", // Reduced gap for better responsiveness
+        gap: "20px",
         flexWrap: "wrap",
         alignItems: "center",
         li: {
-          width: ["100%", "100%", "45%", "45%"], // Responsive width for pagination items
+          width: ["100%", "100%", "45%", "45%"],
           listStyle: "none",
-          padding: 4,
-          borderRadius: "12px",
-          bg: "primaryBg",
+          padding: 3,
+          borderRadius: "8px",
+          backgroundColor: "primaryBg",
+          boxShadow: "card",
           p: {
             color: "black",
             fontSize: 3,
@@ -147,7 +189,7 @@ const theme = {
           span: {
             display: "block",
             fontSize: 3,
-            mt: 4,
+            marginTop: 4,
             color: "primaryColor",
           },
           "&:nth-of-type(1)": {
@@ -160,12 +202,11 @@ const theme = {
       },
     },
   },
-  // Adding flexbox styles for any sections
   flexbox: {
     flexColumn: {
       flex: "1",
       paddingRight: "2rem",
-      paddingBottom: [2, 3, 4], // Responsive padding for smaller screens
+      paddingBottom: [2, 3, 4],
     },
   },
 };

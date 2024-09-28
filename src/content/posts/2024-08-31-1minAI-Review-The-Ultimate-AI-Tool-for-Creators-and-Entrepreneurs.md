@@ -5,7 +5,7 @@ date: 2024-08-31 17:09
 description: Discover how 1minAI can revolutionize your content creation process with its suite of AI-powered tools for writing, image editing, and audio-video enhancement.
 featuredImage: ../../../static/assets/product_343874_product_shots1.jpg
 tags: [AI Tools, Content Creation, Software Review]
-category: "AI" 
+category: "AI Tools" 
 ---
 
 

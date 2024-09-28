@@ -5,7 +5,7 @@ template: "blog-post"
 slug: "my-new-article"
 featuredImage: ../../../static/assets/pexels-pixabay-270637.jpg
 description: "This is a brief description of my new article."
-category: "Technology"  
+category: 
 ---
 <h1>Your Blog Post Title</h1>
 <br>

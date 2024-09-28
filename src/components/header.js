@@ -7,9 +7,14 @@ const Header = () => {
   const { theme } = useThemeUI();
   return (
     <header sx={headerStyles.container}>
-      <div sx={{ display: 'flex', alignItems: 'center' }}>
-        <Logo />
-        <h2 sx={headerStyles.titleStyle}>Software<span sx={{ color: theme.colors.secondary || '#a31933' }}>Discoverer</span></h2>
+      <div sx={{ display: "flex", alignItems: "center" }}>
+        <Logo sx={headerStyles.logoStyle} />
+        <h2 sx={headerStyles.titleStyle}>
+          Software
+          <span sx={{ color: theme.colors.secondary || "#a31933" }}>
+            Discoverer
+          </span>
+        </h2>
       </div>
       <div sx={headerStyles.navIcons}>
         <div sx={headerStyles.navMenu}>
@@ -35,11 +40,15 @@ const headerStyles = {
     py: "8px",
     bg: "primaryBg",
   },
+  logoStyle: {
+    width: ["50px", "60px", "70px"], // Adjust the size for mobile, tablet, and larger screens
+    height: "auto", // Keeps the aspect ratio of the logo
+  },
   titleStyle: {
-    ml: "10px", // Adjust margin-left as needed to space title from the logo
+    ml: "12px", // Adjust margin-left to space the title from the logo
     color: "text", // Assumes 'text' is a defined color in your theme
-    fontWeight: 'bold',
-    fontSize: [3, 4] // Responsive font size
+    fontWeight: "bold",
+    fontSize: [3, 4], // Responsive font size for title
   },
   navMenuBigScreen: {
     display: ["none", "none", "none", "flex"],

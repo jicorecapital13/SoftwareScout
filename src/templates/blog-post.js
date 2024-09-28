@@ -8,8 +8,6 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Pagination from "../components/pagination";
 import slugify from "@sindresorhus/slugify";
 import SiteMeta from "../util/site.json";
-
-// Share button imports
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -28,7 +26,7 @@ import {
 const blogPrefix = "/blog/";
 
 const Post = ({ data, pageContext }) => {
-  // Check if data exists before destructuring
+  // Safeguard for missing data
   if (!data || !data.markdownRemark) {
     return (
       <Layout>
@@ -41,37 +39,64 @@ const Post = ({ data, pageContext }) => {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
 
+  // Page URL for share buttons
   const pageURL = frontmatter.title
     ? SiteMeta.meta.siteUrl + blogPrefix + slugify(frontmatter.title)
     : "";
 
+  // Featured Image Logic
   const Image = frontmatter.featuredImage
     ? frontmatter.featuredImage.childImageSharp.gatsbyImageData
     : null;
 
-  const { previous, next } = pageContext;
+  const { previous, next } = pageContext; // Use the context for pagination
 
-  // Safely handle tags
+  // Tag Labels Logic
   const tagLabel =
     frontmatter.tags && frontmatter.tags.length > 0 ? (
       <div sx={blogStyles.tagsDiv}>
         {frontmatter.tags.map((tag) => (
-          <Link key={tag} to={`/tag/` + slugify(tag)} sx={{ fontSize: 2 }}>
+          <Link key={tag} to={`/tag/${slugify(tag)}`} sx={{ fontSize: 2 }}>
             − {tag}
           </Link>
         ))}
       </div>
     ) : null;
 
+  // Share Icons
+  const shareIcons = (
+    <div sx={blogStyles.shareIcons}>
+      <FacebookShareButton url={pageURL}>
+        <FacebookIcon size={32} borderRadius="6" iconFillColor="#fff" />
+      </FacebookShareButton>
+      <TwitterShareButton url={pageURL}>
+        <TwitterIcon size={32} borderRadius="6" iconFillColor="#fff" />
+      </TwitterShareButton>
+      <LinkedinShareButton url={pageURL}>
+        <LinkedinIcon size={32} borderRadius="6" iconFillColor="#fff" />
+      </LinkedinShareButton>
+      <TelegramShareButton url={pageURL}>
+        <TelegramIcon size={32} borderRadius="6" iconFillColor="#fff" />
+      </TelegramShareButton>
+      <WhatsappShareButton url={pageURL}>
+        <WhatsappIcon size={32} borderRadius="6" iconFillColor="#fff" />
+      </WhatsappShareButton>
+      <EmailShareButton url={pageURL}>
+        <EmailIcon size={32} borderRadius="6" iconFillColor="#fff" />
+      </EmailShareButton>
+    </div>
+  );
+
   return (
     <Layout>
       <Seo
         title={frontmatter.title || "Untitled"}
-        description={frontmatter.description || ""}
+        description={frontmatter.description || "No description available."}
         article={true}
       />
       <div sx={blogStyles.blogContainer}>
         <div>
+          {/* Blog Header */}
           <section>
             <div sx={blogStyles.blogHead}>
               <h2>{frontmatter.title || "Untitled"}</h2>
@@ -101,62 +126,13 @@ const Post = ({ data, pageContext }) => {
             )}
           </section>
 
+          {/* Tags and Share */}
           <div>
             <h3>Share:</h3>
-            {pageURL && (
-              <div sx={blogStyles.shareIcons}>
-                <FacebookShareButton url={pageURL}>
-                  <FacebookIcon
-                    size={32}
-                    borderRadius="6"
-                    iconFillColor="#fff"
-                    bgStyle={{ fill: "#3b5998" }}
-                  />
-                </FacebookShareButton>
-                <TwitterShareButton url={pageURL}>
-                  <TwitterIcon
-                    size={32}
-                    borderRadius="6"
-                    iconFillColor="#fff"
-                    bgStyle={{ fill: "#1da1f2" }}
-                  />
-                </TwitterShareButton>
-                <LinkedinShareButton url={pageURL}>
-                  <LinkedinIcon
-                    size={32}
-                    borderRadius="6"
-                    iconFillColor="#fff"
-                    bgStyle={{ fill: "#0077b5" }}
-                  />
-                </LinkedinShareButton>
-                <TelegramShareButton url={pageURL}>
-                  <TelegramIcon
-                    size={32}
-                    borderRadius="6"
-                    iconFillColor="#fff"
-                    bgStyle={{ fill: "#0088cc" }}
-                  />
-                </TelegramShareButton>
-                <WhatsappShareButton url={pageURL}>
-                  <WhatsappIcon
-                    size={32}
-                    borderRadius="6"
-                    iconFillColor="#fff"
-                    bgStyle={{ fill: "#25D366" }}
-                  />
-                </WhatsappShareButton>
-                <EmailShareButton url={pageURL}>
-                  <EmailIcon
-                    size={32}
-                    borderRadius="6"
-                    iconFillColor="#fff"
-                    bgStyle={{ fill: "#7f7f7f" }}
-                  />
-                </EmailShareButton>
-              </div>
-            )}
+            {shareIcons}
           </div>
 
+          {/* Blog Content */}
           <article
             sx={{ variant: "variants.markdown" }}
             dangerouslySetInnerHTML={{
@@ -164,9 +140,13 @@ const Post = ({ data, pageContext }) => {
             }}
           />
 
+          {/* Author Bio */}
           <AuthorBio />
 
-          {(previous || next) && <Pagination previous={previous} next={next} />}
+          {/* Pagination Component */}
+          {(previous || next) && (
+            <Pagination previous={previous} next={next} />
+          )}
         </div>
       </div>
     </Layout>
@@ -175,7 +155,7 @@ const Post = ({ data, pageContext }) => {
 
 export default Post;
 
-// Example query for markdownRemark
+// GraphQL query for markdownRemark data
 export const query = graphql`
   query BlogPostByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -204,17 +184,17 @@ const blogStyles = {
   blogHead: {
     maxWidth: "70ch",
     h2: {
-      color: "black",
+      color: "text",
       fontSize: [5, 5, 6],
     },
     p: {
       fontSize: 3,
-      color: "mutedColor",
+      color: "muted",
       my: 3,
     },
     span: {
       fontSize: 2,
-      color: "primaryColor",
+      color: "primary",
       display: "block",
     },
   },
@@ -236,7 +216,7 @@ const blogStyles = {
     gap: "15px",
     flexWrap: "wrap",
     a: {
-      color: "black",
+      color: "text",
       fontWeight: "600",
       fontSize: 2,
     },
