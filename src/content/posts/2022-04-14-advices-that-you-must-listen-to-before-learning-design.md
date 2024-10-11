@@ -6,7 +6,7 @@ description: We create high integrity, highly engaging experiences to meet the
   world's growing appetite for technology.
 featuredImage: ../../../static/assets/pexels-hatice-baran-10583688.jpg
 tags: [SEO Tools]
-category: "SEO Tools"
+category: 
 ---
 
 ### The item in the box did not reflect the sketches and drawings I had spent a considerable time preparing.

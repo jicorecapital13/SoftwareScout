@@ -73,28 +73,35 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   // Create blog posts with previous and next navigation
   posts
-    .filter((post) => post.node.frontmatter.template === "blog-post")
-    .forEach((post, index) => {
-      const id = post.node.id;
-      const postTitle = post.node.frontmatter.title;
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
-      const prefix = `/blog/`;
-      const slug = post.node.frontmatter.slug || slugify(postTitle);
+  .filter((post) => post.node.frontmatter.template === "blog-post")
+  .forEach((post, index) => {
+    const id = post.node.id;
+    const postTitle = post.node.frontmatter.title;
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+    const next = index === 0 ? null : posts[index - 1].node;
+    const prefix = `/blog/`;
+    const slug = post.node.frontmatter.slug || slugify(postTitle);
 
-      createPage({
-        path: prefix + slug,
-        component: blogPostTemplate,
-        context: {
-          id,
-          previous,
-          next,
-        },
-      });
+    // Debugging: Log the slug, previous, and next posts
+    console.log(`Creating page for: ${postTitle}`);
+    console.log(`Slug: ${slug}`);
+    console.log(`Previous post:`, previous ? previous.frontmatter.title : "None");
+    console.log(`Next post:`, next ? next.frontmatter.title : "None");
+
+    createPage({
+      path: prefix + slug,
+      component: blogPostTemplate,
+      context: {
+        id,
+        previous,
+        next,
+      },
     });
+  });
+
 
   // Create paginated blog list pages
-  const postsPerPage = 9;
+  const postsPerPage = 100;
   const numPages = Math.ceil(posts.length / postsPerPage);
 
   Array.from({ length: numPages }).forEach((_, i) => {

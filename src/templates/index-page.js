@@ -51,22 +51,14 @@ export const pageQuery = graphql`
 `;
 
 const HomePage = ({ data }) => {
-  const { markdownRemark, posts } = data; // data.markdownRemark holds your page data
+  const { markdownRemark, posts } = data;
   const { frontmatter } = markdownRemark;
 
   const homeData = (
     <div sx={indexStyles.homeData}>
       <div>
         {frontmatter.name && (
-          <h3
-            sx={{
-              color: "text",
-              fontSize: [4, 5, 6],
-              fontWeight: "bold",
-              mb: [3, 4],
-              textAlign: "center",
-            }}
-          >
+          <h3 sx={indexStyles.title}>
             Your guide to the best software
           </h3>
         )}
@@ -75,17 +67,7 @@ const HomePage = ({ data }) => {
         )}
         <Link
           to={frontmatter.cta.url}
-          sx={{
-            variant: "variants.button",
-            backgroundColor: "#a31933", // Set the button color
-            display: "inline-block", // Ensures it respects margin auto for centering
-            textAlign: "center",
-            mx: "auto", // Centers the button horizontally
-            color: "white", // Ensure text is readable against the new button color
-            padding: "10px 20px", // Adjust padding as needed
-            borderRadius: "5px", // Optional: Adjust border radius to match your design
-            mt: 4, // Add some margin to separate from the description
-          }}
+          sx={indexStyles.ctaButton}
         >
           {frontmatter.cta.text} &nbsp;
           <span>&#8599;</span>
@@ -102,21 +84,11 @@ const HomePage = ({ data }) => {
   return (
     <Layout>
       <Seo title={Site.title} description={frontmatter.description} />
-      <div
-        sx={{
-          variant: "variants.container",
-          width: "100%",
-          m: "0 auto",
-        }}
-      >
+      <div sx={indexStyles.container}>
         {homeData}
       </div>
       <BlogListHome data={posts} />
-
-      {/* Place the new component near the footer */}
       <AboutAndRecentArticles />
-
-      {/* Footer component */}
     </Layout>
   );
 };
@@ -124,36 +96,60 @@ const HomePage = ({ data }) => {
 export default HomePage;
 
 const indexStyles = {
+  container: {
+    variant: "variants.container",
+    width: "100%",
+    m: "0 auto",
+    padding: ["20px", "30px", "40px"],
+    backgroundColor: "rgba(30, 30, 50, 0.95)", // Dark, futuristic background
+    color: "white", // White text for readability
+    borderRadius: "12px", // Modern rounded corners
+    boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.3)", // Deep shadow for depth
+  },
   title: {
-    color: "black",
-    mb: 3,
-    fontSize: [5, 5, 6],
-    letterSpacing: "1px",
-    fontWeight: "600 !important",
+    color: "#00D1FF", // Neon-like blue
+    fontSize: [5, 6, 7], // Larger and futuristic
+    fontWeight: "bold",
+    textShadow: "0px 4px 10px rgba(0, 209, 255, 0.7)", // Neon glow effect
+    mb: [3, 4],
+    textAlign: "center",
   },
   description: {
-    color: "mutedColor",
-    fontSize: "22px",
-    fontStyle: "italic",
-    lineHeight: "1.4",
-    fontWeight: "200",
+    color: "#A9A9A9", // Subtle grey for a modern look
+    fontSize: [3, 4],
+    lineHeight: "1.6",
     mb: 5,
+    textShadow: "0px 2px 8px rgba(255, 255, 255, 0.1)", // Soft glow
+  },
+  ctaButton: {
+    variant: "variants.button",
+    backgroundColor: "#FF007A", // Futuristic pink button
+    color: "white",
+    display: "inline-block",
+    textAlign: "center",
+    padding: "12px 24px",
+    borderRadius: "50px", // Circular button for a futuristic feel
+    mt: 4,
+    transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease",
+    "&:hover": {
+      transform: "translateY(-5px)", // Subtle lift on hover
+      boxShadow: "0px 15px 30px rgba(255, 0, 122, 0.7)", // Pink glow on hover
+    },
   },
   featuredImage: {
-    maxWidth: "100% !important",
-    width: "100% !important",
-    height: ["400px"],
+    maxWidth: "100%",
+    width: "100%",
+    height: ["400px", "500px"], // Larger image with fixed height
     borderRadius: "12px",
+    transition: "transform 0.3s ease", // Zoom effect on hover
+    "&:hover": {
+      transform: "scale(1.05)", // Slight zoom for futuristic feel
+    },
   },
   homeData: {
     display: "grid",
-    gridTemplateColumns: [
-      "repeat(1, 1fr)",
-      "repeat(1, 1fr)",
-      "repeat(2, 1fr)",
-      "repeat(2, 1fr)",
-    ],
-    gap: "36px",
+    gridTemplateColumns: ["1fr", "1fr", "1fr 1fr"], // Adjust columns based on screen size
+    gap: "40px",
     alignItems: "center",
   },
 };

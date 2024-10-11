@@ -5,7 +5,7 @@ date: 2022-04-03 17:09
 description: This blog is designed to help aspiring artists build a solid online
   portfolio necessary to compete in the art world.
 featuredImage: ../../../static/assets/pexels-kayra-sercan-13302244.jpg
-tags: []
+tags: [AI Tools]
 ---
 
 ### The item in the box did not reflect the sketches and drawings I had spent a considerable time preparing.

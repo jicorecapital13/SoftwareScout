@@ -8,6 +8,7 @@ featuredImage: ../../../static/assets/roxana-zerni-cdqiiwpqfmq-unsplash.jpg
 tags:
   - none
   - Art
+category: 
 ---
 
 ### The item in the box did not reflect the sketches and drawings I had spent a considerable time preparing.

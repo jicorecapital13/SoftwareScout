@@ -1,13 +1,13 @@
 ---
 template: blog-post
 title: Basically Sum Up Your Photography Experience.
-date: 2021-11-03 17:21
+date: 2022-11-03 17:21
 description: Sometimes the product looks amazing,” says Apfel. “But the buyer
   gets cold feet about quantities and the price might be higher than initially
   thought . . . so they don’t follow through with an order.
 featuredImage: ../../../static/assets/wasa-crispbread-xlo7n1ctmzc-unsplash.jpg
-tags:
-  - none
+tags: [Software Review]
+category: 
 ---
 
 Yet even with the best and most reliable manufacturing team in place, new product launches are notoriously hard to get right. A study by the Product Development and Management Association found that failure rates can be as high as 40 per cent, depending on the market sector.

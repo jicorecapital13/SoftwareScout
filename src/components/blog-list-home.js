@@ -6,7 +6,10 @@ import postData from "../util/posts.json";
 
 export default function BlogListHome(props) {
   // Ensure `data` is available and has the expected structure
-  const data = props.data || { edges: [] };
+  const data = props.data && props.data.edges ? props.data : { edges: [] };
+
+  // Log data for debugging 
+  console.log("Blog data:", data);
 
   // Map through the blog posts and pass necessary data to `BlogCard`
   const posts = data.edges
@@ -32,7 +35,7 @@ const PostMaker = ({ data }) => (
           <p sx={blogStyles.description}>{postData?.description || "Latest blog posts."}</p>
         </div>
         <div style={{ display: "flex" }}>
-          {data.length > 9 && (
+          {data.length > 10 && (
             <Link
               to="/blog"
               sx={{
@@ -51,7 +54,11 @@ const PostMaker = ({ data }) => (
           )}
         </div>
       </div>
-      <div sx={blogStyles.blogPosts}>{data.slice(0, 9)}</div>
+      {data.length ? (
+        <div sx={blogStyles.blogPosts}>{data.slice(0, 4)}</div>
+      ) : (
+        <p>No blog posts available at the moment.</p>
+      )}
     </div>
   </section>
 );

@@ -1,12 +1,12 @@
 ---
 template: blog-post
 title: Common Prejudices About Photography And Art
-date: 2021-03-09 17:29
+date: 2022-04-09 17:29
 description: “I wasn’t treated the way I should have been treated,” said Deyong.
   “So I said, ‘Enough is enough.’”
 featuredImage: ../../../static/assets/pexels-nothing-ahead-7451931.jpg
-tags: [Blogging Tools]
-category: "Blogging Tools"
+tags: [SEO Tools]
+category: 
 ---
 
 ### The item in the box did not reflect the sketches and drawings I had spent a considerable time preparing.

@@ -26,7 +26,6 @@ import {
 const blogPrefix = "/blog/";
 
 const Post = ({ data, pageContext }) => {
-  // Safeguard for missing data
   if (!data || !data.markdownRemark) {
     return (
       <Layout>
@@ -39,19 +38,16 @@ const Post = ({ data, pageContext }) => {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
 
-  // Page URL for share buttons
   const pageURL = frontmatter.title
     ? SiteMeta.meta.siteUrl + blogPrefix + slugify(frontmatter.title)
     : "";
 
-  // Featured Image Logic
   const Image = frontmatter.featuredImage
     ? frontmatter.featuredImage.childImageSharp.gatsbyImageData
     : null;
 
-  const { previous, next } = pageContext; // Use the context for pagination
+  const { previous, next } = pageContext;
 
-  // Tag Labels Logic
   const tagLabel =
     frontmatter.tags && frontmatter.tags.length > 0 ? (
       <div sx={blogStyles.tagsDiv}>
@@ -63,7 +59,6 @@ const Post = ({ data, pageContext }) => {
       </div>
     ) : null;
 
-  // Share Icons
   const shareIcons = (
     <div sx={blogStyles.shareIcons}>
       <FacebookShareButton url={pageURL}>
@@ -155,7 +150,6 @@ const Post = ({ data, pageContext }) => {
 
 export default Post;
 
-// GraphQL query for markdownRemark data
 export const query = graphql`
   query BlogPostByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -179,10 +173,15 @@ export const query = graphql`
 const blogStyles = {
   blogContainer: {
     variant: "variants.container",
-    px: ["20px", "60px", "160px", "220px", "280px"],
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    px: ["20px", "40px", "60px", "80px", "100px"], // Full width with responsive padding
+    maxWidth: "100%",
   },
   blogHead: {
-    maxWidth: "70ch",
+    maxWidth: "80ch",
+    textAlign: "center", // Center align the title and description
     h2: {
       color: "text",
       fontSize: [5, 5, 6],
@@ -203,16 +202,18 @@ const blogStyles = {
     mt: 4,
     mb: 6,
     borderRadius: "18px",
-    height: "500px !important",
+    height: "auto", // Allow dynamic height based on the image
+    width: "100%", // Ensure the image takes full width of its container
   },
   shareIcons: {
     display: "flex",
-    alignItems: "center",
+    justifyContent: "center",
     gap: "15px",
     mt: 2,
   },
   tagsDiv: {
     display: "flex",
+    justifyContent: "center",
     gap: "15px",
     flexWrap: "wrap",
     a: {

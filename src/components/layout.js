@@ -1,28 +1,16 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { useLocation } from "@reach/router"; // Import useLocation from reach/router
 import Header from "./header";
 import Footer from "./footer";
-import Sidebar from "../components/sidebar";
 
 const Layout = ({ children, className }) => {
-  const location = useLocation(); // Get the current page location
-
-  // Show the sidebar only for paths starting with '/blog'
-  const isBlogPage = location.pathname.startsWith("/blog");
-
   return (
     <div sx={layoutStyles.base}>
       <Header />
-      <div sx={{ display: "flex", flexDirection: ["column", "row"] }}>
-        <main className={"container " + className} sx={{ flex: 3 }}>
+      <div sx={layoutStyles.mainContainer}>
+        <main className={"container " + className} sx={layoutStyles.main}>
           {children}
         </main>
-        {isBlogPage && (  /* Conditionally render Sidebar only on blog pages */
-          <aside sx={{ flex: 1, mt: [4, 0] }}>
-            <Sidebar />
-          </aside>
-        )}
       </div>
       <Footer />
     </div>
@@ -45,6 +33,14 @@ const layoutStyles = {
     },
     a: {
       textDecoration: "none",
+      color: "primary", // Ensures link color is from the theme
+      "&:hover": {
+        color: "secondary", // Link hover effect from theme
+      },
+      "&:focus": {
+        outline: "none",
+        boxShadow: (theme) => `0 0 0 3px ${theme.colors.primary}`,
+      },
     },
     "h1, h2, h3": {
       fontFamily: "heading",
@@ -67,5 +63,19 @@ const layoutStyles = {
       fontWeight: "heading",
       lineHeight: "heading",
     },
+  },
+  mainContainer: {
+    display: "flex",
+    flexDirection: ["column", "row"],
+    px: [3, 4, 5], // Responsive padding for better spacing
+    py: [4, 5], // Top/bottom padding for spacing on larger screens
+    justifyContent: "center",
+    maxWidth: "1200px", // Maximum width for better readability
+    margin: "0 auto", // Centering the content
+  },
+  main: {
+    flex: 1,
+    width: "100%",
+    px: [2, 3], // Responsive padding inside the main content area
   },
 };

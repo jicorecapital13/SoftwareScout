@@ -254,3 +254,54 @@ a:hover {
   background-color: #e0e0e0;
   margin: 0 2rem;
 }
+.category-page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.category-title {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.category-description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.category-post-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.category-post-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease;
+}
+
+.category-post-item:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.post-title:hover {
+  text-decoration: underline;
+  color: #A31933; /* Adjust this color to match your website's theme */
+}

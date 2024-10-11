@@ -5,10 +5,7 @@ date: 2022-04-14 17:27
 description: Getting there hasn’t exactly gone according to plan, but it has
   informed how the company plans to forge ahead.
 featuredImage: ../../../static/assets/doan-anh-vbrv_c6zc74-unsplash.jpg
-tags:
-  - Abstract
-  - Art
-  - Ideas
+tags: [SEO Tools]
 ---
 
 Yet even with the best and most reliable manufacturing team in place, new product launches are notoriously hard to get right. A study by the Product Development and Management Association found that failure rates can be as high as 40 per cent, depending on the market sector

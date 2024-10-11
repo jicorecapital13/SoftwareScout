@@ -1,9 +1,3 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
-
 const integration = require("./src/util/integrations.json");
 const settings = require("./src/util/site.json");
 const themecolors = require("./src/util/default-colors.json");
@@ -30,16 +24,27 @@ module.exports = {
       },
     },
 
-    // Google fonts setup
+    // Modern web fonts setup
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        fonts: [
-          `${siteFont.body}`,
-          `${siteFont.heading}:300,400,700`,
-          `${siteFont.monospace}`,
-        ],
-        display: "swap",
+        fonts: {
+          google: [
+            {
+              family: siteFont.body,
+            },
+            {
+              family: siteFont.heading,
+              variants: ["300", "400", "700"],
+            },
+            {
+              family: siteFont.monospace,
+            },
+          ],
+        },
+        useMinify: true,
+        usePreload: true,
+        usePreconnect: true,
       },
     },
 
@@ -58,16 +63,6 @@ module.exports = {
             resolve: `gatsby-plugin-netlify-cms-paths`,
             options: {
               cmsConfig: `/static/admin/config.yml`,
-            },
-          },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1024,
-              showCaptions: true,
-              linkImagesToOriginal: false,
-              loading: "lazy", // Use lazy-loading for performance
-              placeholder: "none", // Removed blurred placeholder as requested
             },
           },
           `gatsby-remark-responsive-iframe`,
@@ -98,7 +93,6 @@ module.exports = {
     `gatsby-plugin-theme-ui`,
 
     // SEO and site enhancements
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
 
     // Google Analytics setup

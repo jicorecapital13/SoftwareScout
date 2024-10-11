@@ -5,11 +5,12 @@ date: 2022-04-04 16:44
 description: This article will guide you through the process of pro­du­cing the
   best design for your busi­ness.
 featuredImage: ../../../static/assets/pexels-godisable-jacob-1013328.jpg
-tags:
-  - none
+tags: [AI tools]
 ---
 
 Yet even with the best and most reliable manufacturing team in place, new product launches are notoriously hard to get right. A study by the Product Development and Management Association found that failure rates can be as high as 40 per cent, depending on the market sector.
+
+
 
 > These are not disastrous odds, but they are clearly not so good that success is guaranteed. What makes a product successful goes far beyond how it looks. Even the most aesthetically pleasing designs can still fail the litmus test of customer satisfaction.
 

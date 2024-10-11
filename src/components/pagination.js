@@ -1,65 +1,106 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import { Link } from "gatsby";
 
-const Pagination = ({ previous, next }) => {
-  // Ensure slugs and titles are correctly passed to the links
-  const prevSlug = previous?.slug || "";
-  const nextSlug = next?.slug || "";
-  const prevTitle = previous?.title || "Previous Post";
-  const nextTitle = next?.title || "Next Post";
+import { jsx } from "theme-ui";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import BlogCard from "../components/blog-card";
+
+const BlogList = ({ pageContext }) => {
+  // Always call useStaticQuery unconditionally at the top level of your component
+  const data = useStaticQuery(graphql`
+    query BlogListQuery {
+      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+        edges {
+          node {
+            id
+            frontmatter {
+              title
+              date(formatString: "MMMM DD, YYYY")
+              featuredImage {
+                childImageSharp {
+                  gatsbyImageData(layout: FULL_WIDTH)
+                }
+              }
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (!pageContext) {
+    return <p>Error: Page context is missing.</p>;
+  }
+
+  const posts = data?.allMarkdownRemark?.edges || [];
+  const { currentPage, numPages } = pageContext;
+
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === numPages;
+  const prevPage = currentPage - 1 === 1 ? `/blog` : `/blog/${currentPage - 1}`;
+  const nextPage = `/blog/${currentPage + 1}`;
 
   return (
-    <div
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "20px",
-        mt: 5,
-        borderTop: "1px solid",
-        borderColor: "muted",
-        pt: 4,
-      }}
-    >
-      {previous && prevSlug && (
-        <Link
-          to={prevSlug}
-          rel="prev"
-          sx={paginationLinkStyles("left")}
-        >
-          &larr; {prevTitle}
-        </Link>
-      )}
-      {next && nextSlug && (
-        <Link
-          to={nextSlug}
-          rel="next"
-          sx={paginationLinkStyles("right")}
-        >
-          {nextTitle} &rarr;
-        </Link>
-      )}
+    <div>
+      <h1>Blog Posts</h1>
+      <div sx={blogListStyles.grid}>
+        {posts.length > 0 ? (
+          posts.map(({ node }) => (
+            <BlogCard key={node.id} data={node} />
+          ))
+        ) : (
+          <p>No posts available.</p>
+        )}
+      </div>
+
+      <div sx={blogListStyles.pagination}>
+        {!isFirst && (
+          <Link to={prevPage} sx={blogListStyles.link} rel="prev">
+            ← Previous
+          </Link>
+        )}
+        {Array.from({ length: numPages }, (_, i) => (
+          <Link
+            key={`pagination-number${i + 1}`}
+            to={`/blog/${i === 0 ? "" : i + 1}`}
+            sx={blogListStyles.link}
+            activeClassName="active"
+          >
+            {i + 1}
+          </Link>
+        ))}
+        {!isLast && (
+          <Link to={nextPage} sx={blogListStyles.link} rel="next">
+            Next →
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
 
-// Styling function for pagination links
-const paginationLinkStyles = (align) => ({
-  width: ["100%", "auto"],
-  fontSize: 3,
-  fontWeight: "bold",
-  color: "primaryColor",
-  textDecoration: "none",
-  transition: "color 0.3s ease",
-  textAlign: align,
-  "&:hover": {
-    color: "text",
-  },
-  "&:focus": {
-    outline: "none",
-    boxShadow: (theme) => `0 0 0 3px ${theme.colors.primary}`,
-  },
-});
+export default BlogList;
 
-export default Pagination;
+const blogListStyles = {
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    gap: "20px",
+    mb: 5,
+  },
+  pagination: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    mt: 5,
+  },
+  link: {
+    padding: "8px 16px",
+    textDecoration: "none",
+    color: "primary",
+    "&.active": {
+      fontWeight: "bold",
+      textDecoration: "underline",
+    },
+  },
+};
