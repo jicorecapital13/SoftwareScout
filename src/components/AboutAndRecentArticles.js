@@ -54,7 +54,7 @@ const AboutSection = () => {
               },
             }}
           >
-            Read more about me
+            <h4>Read more about me</h4>
             <svg
               viewBox="0 0 448 512"
               fill="currentColor"

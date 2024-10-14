@@ -29,7 +29,7 @@ const BlogList = ({ pageContext }) => {
   `);
 
   if (!pageContext) {
-    return <p>Error: Page context is missing.</p>;
+    return <p></p>;
   }
 
   const posts = data?.allMarkdownRemark?.edges || [];
