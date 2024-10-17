@@ -41,7 +41,7 @@ const Tags = ({ data, pageContext }) => {
       <Seo title={`Tag: ${tagTitle}`} />
       <div sx={tagsStyles.tagContainer}>
         <section sx={tagsStyles.tagHead}>
-          <h2>{`Tag: ${tagTitle}`}</h2>
+          <h2>{`Category: ${tagTitle}`}</h2>
           {tagCard.length !== 1 ? (
             <p>{tagCard.length} Blogs</p>
           ) : (

@@ -55,7 +55,7 @@ const PostMaker = ({ data }) => (
         </div>
       </div>
       {data.length ? (
-        <div sx={blogStyles.blogPosts}>{data.slice(0, 4)}</div>
+        <div sx={blogStyles.blogPosts}>{data.slice(0, 6)}</div>
       ) : (
         <p>No blog posts available at the moment.</p>
       )}
