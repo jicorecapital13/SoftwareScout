@@ -9,7 +9,7 @@ const AboutPage = () => (
   <Layout showColorModeToggle={false}>
     <Seo 
       title={Site.title} 
-      description="Learn more about Software Scout and our mission to enhance your content creation and tech skills." 
+      description="Learn more about Software discoverer and our mission to enhance your content creation and tech skills." 
     />
     <main sx={styles.container}>
       <section sx={styles.aboutSection}>
