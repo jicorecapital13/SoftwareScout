@@ -119,8 +119,5 @@ module.exports = {
         icon: `static/${iconImg}`,  // Use a direct relative path to the static folder
       },
     },
-
-    // Enable offline support
-    `gatsby-plugin-offline`,
   ],
 };
