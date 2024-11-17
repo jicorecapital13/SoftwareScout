@@ -27,7 +27,7 @@ const AboutPage = () => (
         <div sx={styles.aboutText}>
           <h1 sx={styles.title}>Hey there, I'm John, and welcome to Software Discoverer!</h1>
           <p sx={styles.description}>
-            At Software Discoverer, we provide comprehensive tutorials and resources for content creators, software enthusiasts, and AI innovators. Our mission is to help you stay ahead in the rapidly evolving world of technology.
+          At Software Discoverer, we help digital creators, entrepreneurs, and tech enthusiasts unlock the potential of today's leading software and AI tools. Our mission is to simplify technology through easy-to-follow tutorials, insightful guides, and practical resources, empowering you to stay productive, creative, and ahead of the curve in the digital world.
           </p>
           <p sx={styles.description}>
             We offer insightful guides on software, effective content creation strategies, and the latest advancements in generative AI. Whether you are a blogger, YouTuber, or developer, our content is designed to enhance your skills and boost productivity while maintaining high standards of creativity and quality.
@@ -71,31 +71,34 @@ const styles = {
     mb: [4, 5],
     textAlign: 'center',
   },
-  ctaButtons: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 3,
-    mt: [4, 5],
+ctaButtons: {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: 3,
+  mt: [4, 5],
+},
+ctaButton: {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  px: [3, 4],
+  py: [2, 3],
+  fontSize: [1, 2],
+  fontWeight: 'bold',
+  color: 'white', // White text by default
+  bg: '#A31933', // Red background color
+  borderRadius: '8px', // Rounded corners for a consistent look
+  textDecoration: 'none',
+  transition: 'background-color 0.3s ease, transform 0.2s ease, color 0.3s ease',
+  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
+  '&:hover': {
+    bg: 'darkred', // Slightly darker red on hover
+    color: 'blue', // Font turns blue on hover
+    transform: 'translateY(-2px)', // Lift effect
   },
-  ctaButton: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    px: [3, 4],
-    py: [2, 3],
-    fontSize: [1, 2],
-    fontWeight: 'bold',
-    color: 'background',
-    bg: '#a31933', // Updated to the color you specified earlier
-    borderRadius: '4px',
-    textDecoration: 'none',
-    transition: 'background-color 0.3s',
-    '&:hover': {
-      bg: 'white', // Hover effect with white background and colored text
-      color: '#a31933', // Ensure the text remains visible on hover
-    },
-  },
+},
+
   aboutImage: {
     display: 'flex',
     justifyContent: 'center',

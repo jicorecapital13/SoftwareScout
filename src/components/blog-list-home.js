@@ -35,24 +35,33 @@ const PostMaker = ({ data }) => (
           <p sx={blogStyles.description}>{postData?.description || "Latest blog posts."}</p>
         </div>
         <div style={{ display: "flex" }}>
-          {data.length > 10 && (
-            <Link
-              to="/blog"
-              sx={{
-                variant: "variants.button",
-                backgroundColor: "#a31933",
-                color: "white",
-                ":hover": {
-                  backgroundColor: "white",
-                  color: "#a31933",
-                },
-              }}
-            >
-              See all Blogs &nbsp;
-              <span>&#8599;</span>
-            </Link>
-          )}
-        </div>
+  {data.length > 10 && (
+    <Link
+      to="/blog"
+      sx={{
+        display: "inline-flex",
+        alignItems: "center",
+        padding: "0.75rem 1.5rem",
+        backgroundColor: "#A31933", // Same background color
+        color: "white", // White text by default
+        borderRadius: "8px", // Rounded corners
+        textDecoration: "none",
+        fontWeight: "bold",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Subtle shadow
+        transition: "background-color 0.3s ease, transform 0.2s ease, color 0.3s ease",
+        ":hover": {
+          backgroundColor: "darkred", // Slightly darker red on hover
+          transform: "translateY(-2px)", // Lift effect
+          color: "blue", // Link font turns blue on hover
+        },
+      }}
+    >
+      See all Blogs &nbsp;
+      <span>&#8599;</span>
+    </Link>
+  )}
+</div>
+
       </div>
       {data.length ? (
         <div sx={blogStyles.blogPosts}>{data.slice(0, 6)}</div>

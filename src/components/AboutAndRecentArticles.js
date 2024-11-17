@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
+import { Link } from "gatsby";
 
 const AboutSection = () => {
   return (
@@ -43,7 +44,7 @@ const AboutSection = () => {
               target="_blank"
               rel="noreferrer noopener"
               sx={{
-                color: "linkColor",
+                color: "#A31933", // Updated to red color
                 textDecoration: "none",
                 fontWeight: "bold",
                 ":hover": { textDecoration: "underline" },
@@ -57,28 +58,26 @@ const AboutSection = () => {
             others succeed.
           </p>
           <div sx={{ marginTop: "2rem" }}>
-            <a
-              href="/about"
-              target="_blank"
-              rel="noreferrer noopener"
+            <Link
+              to="/about"
               sx={{
                 display: "inline-flex",
                 alignItems: "center",
                 padding: "0.75rem 1.5rem",
-                backgroundColor: "buttonPrimary",
-                color: "buttonText",
+                backgroundColor: "#A31933", // Updated to red color
+                color: "white",
                 borderRadius: "8px",
                 textDecoration: "none",
                 fontWeight: "bold",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                 transition: "background-color 0.3s ease, transform 0.2s ease",
                 ":hover": {
-                  backgroundColor: "buttonHover",
+                  backgroundColor: "darkred",
                   transform: "translateY(-2px)",
                 },
               }}
             >
-              <span sx={{ color: "linkcolor" }}>Read more about me</span>
+              Read more about me
               <svg
                 viewBox="0 0 448 512"
                 fill="currentColor"
@@ -90,7 +89,7 @@ const AboutSection = () => {
               >
                 <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

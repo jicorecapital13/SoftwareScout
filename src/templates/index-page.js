@@ -59,7 +59,7 @@ const HomePage = ({ data }) => {
       <div>
         {frontmatter.name && (
           <h3 sx={indexStyles.title}>
-            Your guide to the best software
+            find the perfect tools
           </h3>
         )}
         {frontmatter.description && (
@@ -123,19 +123,20 @@ const indexStyles = {
   },
   ctaButton: {
     variant: "variants.button",
-    backgroundColor: "#FF007A", // Futuristic pink button
+    backgroundColor: "#A31933", // Red color for the button
     color: "white",
     display: "inline-block",
     textAlign: "center",
     padding: "12px 24px",
-    borderRadius: "50px", // Circular button for a futuristic feel
+    borderRadius: "8px", // Rectangle with slightly rounded corners
     mt: 4,
     transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease",
     "&:hover": {
-      transform: "translateY(-5px)", // Subtle lift on hover
-      boxShadow: "0px 15px 30px rgba(255, 0, 122, 0.7)", // Pink glow on hover
+      transform: "translateY(-3px)", // Subtle lift on hover
+      boxShadow: "0px 8px 20px rgba(163, 25, 51, 0.6)", // Red glow on hover
     },
   },
+  
   featuredImage: {
     maxWidth: "100%",
     width: "100%",

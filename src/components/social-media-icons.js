@@ -2,15 +2,13 @@
 import { jsx } from "theme-ui";
 import { Link } from "gatsby";
 import {
-  RiFacebookFill,
-  RiTwitterFill,
-  RiLinkedinFill,
+  
   RiYoutubeFill,
-  RiInstagramLine,
+  
   RiRssFill,
   RiGithubFill,
   RiTelegramFill,
-  RiPinterestFill,
+
   RiSnapchatFill,
   RiSkypeFill,
   RiDribbbleFill,
@@ -46,31 +44,13 @@ const SocialLink = SocialLinks.socialIcons;
 const sIcons = SocialLink.map((icons, index) => {
   return (
     <div key={"sIcons" + index}>
-      {icons.icon === "facebook" && (
-        <Link to={icons.url} target="_blank">
-          <RiFacebookFill />
-        </Link>
-      )}
-      {icons.icon === "twitter" && (
-        <Link to={icons.url} target="_blank">
-          <RiTwitterFill />
-        </Link>
-      )}
-      {icons.icon === "linkedin" && (
-        <Link to={icons.url} target="_blank">
-          <RiLinkedinFill />
-        </Link>
-      )}
+
       {icons.icon === "youtube" && (
         <Link to={icons.url} target="_blank">
           <RiYoutubeFill />
         </Link>
       )}
-      {icons.icon === "instagram" && (
-        <Link to={icons.url} target="_blank">
-          <RiInstagramLine />
-        </Link>
-      )}
+
       {icons.icon === "rss" && (
         <Link to={icons.url} target="_blank">
           <RiRssFill />
@@ -86,11 +66,7 @@ const sIcons = SocialLink.map((icons, index) => {
           <RiTelegramFill />
         </Link>
       )}
-      {icons.icon === "pinterest" && (
-        <Link to={icons.url} target="_blank">
-          <RiPinterestFill />
-        </Link>
-      )}
+
       {icons.icon === "snapchat" && (
         <Link to={icons.url} target="_blank">
           <RiSnapchatFill />
