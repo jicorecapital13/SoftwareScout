@@ -59,7 +59,7 @@ const HomePage = ({ data }) => {
       <div>
         {frontmatter.name && (
           <h3 sx={indexStyles.title}>
-            find the perfect tools
+          
           </h3>
         )}
         {frontmatter.description && (
