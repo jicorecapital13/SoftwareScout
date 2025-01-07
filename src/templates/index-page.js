@@ -73,12 +73,15 @@ const HomePage = ({ data }) => {
           <span>&#8599;</span>
         </Link>
       </div>
+      
       <GatsbyImage
         image={frontmatter.featuredImage.childImageSharp.gatsbyImageData}
         alt={frontmatter.title + " - Featured image"}
         sx={indexStyles.featuredImage}
       />
+      
     </div>
+    
   );
 
   return (

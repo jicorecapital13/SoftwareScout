@@ -9,17 +9,17 @@
       "url": "/blog"
     },
     {
-      "title": "",
-      "url": "/"
+      "title": "About",
+      "url": "/about"
     },
     {
-      "title": "",
+      "title": "Contact",
       "url": "/contact"
     },
     
     {
       "title": "",
-      "url": "/about"
+      "url": "/Recommended"
     }
     
   ]

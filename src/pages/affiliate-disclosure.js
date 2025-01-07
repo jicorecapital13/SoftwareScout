@@ -51,7 +51,7 @@ const AffiliateDisclosure = () => {
         <p>We appreciate your support through the use of affiliate links. It allows us to continue providing in-depth software reviews and recommendations at no extra cost to you.</p>
 
         <p>If you have any questions about our affiliate relationships or the content on our website, please feel free to contact us at:</p>
-        <p><strong>Email:</strong> [Insert Contact Email]</p>
+        <p><strong>Email:</strong> contact@SoftwareDiscoverer.com</p>
       </div>
     </Layout>
   );
